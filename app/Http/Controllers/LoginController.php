@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Passenger;
 use App\Models\BusOwner;
-use Illuminate\Http\Request;
+
 
 class LoginController extends Controller
 {

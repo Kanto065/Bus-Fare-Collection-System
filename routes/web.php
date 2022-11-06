@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\BusOwnerController;
+use App\Http\Controllers\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,4 +40,4 @@ Route::post('login-user', [LoginController::class, 'loginUser'])->name('login-us
 Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('passenger');
 Route::get('/ownerdash', [LoginController::class, 'ownerdash']);
 
-Route::get('/Add-Bus', [BusController::class, 'busAdd'])->name('addBus');
+Route::get('/Add-Bus', [BusOwnerController::class, 'busAdd'])->name('addBus');
