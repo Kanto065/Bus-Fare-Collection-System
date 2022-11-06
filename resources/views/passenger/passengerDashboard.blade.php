@@ -18,8 +18,8 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                        <li class="nav-item ">
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
@@ -30,13 +30,56 @@
                         </li>
 
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
                 </div>
             </div>
         </nav>
+        <div class="mt-5 d-flex">
+            <div class="col-md-3">
+                <input type="name" class="form-control" id="startingPoint" placeholder="From" >
+            </div>
+            <div class="col-md-3 mx-2">
+                <input type="name" class="form-control" id="startingPoint" placeholder="TO" >
+            </div>
+            <div>
+                <button type="submit" class="btn btn-outline-primary">Submit</button>
+            </div>
+        </div>
+        <div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                <th scope="col">Route</th>
+                <th scope="col">From</th>
+                <th scope="col">To</th>
+                <th scope="col">Disteance</th>
+                <th scope="col">Fare</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <th scope="row">1</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                </tr>
+                <tr>
+                <th scope="row">2</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                </tr>
+                <tr>
+                <th scope="row">3</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
     </div>
 </body>
 
