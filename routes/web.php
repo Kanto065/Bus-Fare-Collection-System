@@ -41,3 +41,4 @@ Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('passenger
 Route::get('/ownerdash', [LoginController::class, 'ownerdash']);
 
 Route::get('/Add-Bus', [BusOwnerController::class, 'busAdd'])->name('addBus');
+//hello
