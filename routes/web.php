@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistrationController;
-
+use App\Http\Controllers\BusOwnerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,14 +21,22 @@ Route::get('/', function () {
     return view('Login');
 })->name('log.in');
 
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('home');
+
 Route::get('/login', function () {
     return view('Login');
 })->name('log.in');
 
-Route::get('/registration', [RegistrationController::class, 'register'])->name('registration');
-Route::post('/registration', [RegistrationController::class, 'registerSubmit'])->name('registration');
+Route::get('/passenger', [RegistrationController::class, 'passengerRegister'])->name('passenger-registration');
+Route::post('/passenger', [RegistrationController::class, 'PassengerRegisterSubmit'])->name('passenger-registration');
 
-Route::get('/OwnerRegistration', [RegistrationController::class, 'oRegister'])->name('ownerReg');
-Route::post('/OwnerRegistration', [RegistrationController::class, 'oRegisterSubmit'])->name('ownerReg');
-Route::post('login-user', [RegistrationController::class, 'loginUser'])->name('login-user');
-Route::get('/dashboard', [RegistrationController::class, 'dashboard']);
+Route::get('/owner', [RegistrationController::class, 'ownerRegister'])->name('owner-registration');
+Route::post('/owner', [RegistrationController::class, 'ownerRegisterSubmit'])->name('owner-registration');
+
+Route::post('login-user', [LoginController::class, 'loginUser'])->name('login-user');
+Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('passenger');
+Route::get('/ownerdash', [LoginController::class, 'ownerdash']);
+
+Route::get('/Add-Bus', [BusController::class, 'busAdd'])->name('addBus');

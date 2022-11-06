@@ -14,7 +14,8 @@
             </ul>
         </div>
         @endif
-        <form class=" shadow-lg p-3 mb-5 bg-body rounded row g-3" action="{{route('ownerReg')}}" method="post">
+        <form class="shadow-lg p-3 mb-5 bg-body rounded row g-3" action="{{route('passenger-registration')}}"
+            method="post">
             @if(Session::has('success'))
             <div class="alert alert-success">{{Session::get('success')}}</div>
             @endif
@@ -23,10 +24,10 @@
             @endif
             @csrf
             <div class="col-md-6">
-                <label for="company_name" class="form-label">Company name</label>
-                <input type="text" class="form-control" id="validationCustom02" placeholder="Company name" name="company_name"
-                    value="{{old('company_name')}}">
-                @error('company name')
+                <label for="first_name" class="form-label">First name</label>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="First name"
+                    name="first_name" value="{{old('first_name')}}">
+                @error('first name')
                 <span class="text-danger">{{$message}}</span>
                 @enderror
                 <div class="valid-feedback">
@@ -34,17 +35,16 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <label for="owner_name" class="form-label">Owner name</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="Owner name"
-                    name="owner_name" value="{{old('owner_name')}}">
-                @error('owner name')
+                <label for="last_name" class="form-label">Last name</label>
+                <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" name="last_name"
+                    value="{{old('last_name')}}">
+                @error('last name')
                 <span class="text-danger">{{$message}}</span>
                 @enderror
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
-            
             <div class="col-md-6">
                 <label for="validationDefaultEmail" class="form-label">Email</label>
                 <div class="input-group">
@@ -73,8 +73,29 @@
                 <span class="text-danger">{{$message}}</span>
                 @enderror
             </div>
-            
-            
+            <div class="col-6">
+                <label for="inputBirthday" class="form-label">Date of birth</label><br>
+                <input type="date" id="birthday" name="dob">
+            </div><br>
+            <label for="inputGender" class="form-label">Gender</label>
+            <div class="form-check col-1">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Male
+                </label>
+            </div>
+            <div class="form-check col-1">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Female
+                </label>
+            </div>
+            <div class="form-check col-1">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                <label class="form-check-label" for="flexRadioDefault3">
+                    Other
+                </label>
+            </div>
             <div class="">
                 <div class="col-md-6">
                     <label for="validationDefaultPassword" class="form-label">Password</label>

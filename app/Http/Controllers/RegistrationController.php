@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Models\pRegistration;
-use App\Models\ownerReg;
+use App\Models\Passenger;
+use App\Models\BusOwner;
 use Session;
 //use Hash;
 
@@ -14,7 +14,7 @@ class RegistrationController extends Controller
 {
     public function passengerRegister()
     {
-        return view('passengerRegistration');
+        return view('passenger.passengerRegistration');
     }
     public function PassengerRegisterSubmit(Request $request)
     {
@@ -26,7 +26,7 @@ class RegistrationController extends Controller
             'address' => 'required|max:50',
             'password' => 'required|confirmed|min:4',
         ]);
-        $p = new pRegistration();
+        $p = new Passenger();
         $p->first_name = $request->first_name;
         $p->last_name = $request->last_name;
         $p->email = $request->email;
@@ -43,7 +43,7 @@ class RegistrationController extends Controller
     }
     public function ownerRegister()
     {
-        return view('ownerRegistration');
+        return view('busOwner.ownerRegistration');
     }
     public function ownerRegisterSubmit(Request $request)
     {
@@ -55,7 +55,7 @@ class RegistrationController extends Controller
             'address' => 'required|max:50',
             'password' => 'required|confirmed|min:4',
         ]);
-        $o = new ownerReg();
+        $o = new BusOwner();
         $o->company_name = $request->company_name;
         $o->owner_name = $request->owner_name;
         $o->email = $request->email;
@@ -69,30 +69,5 @@ class RegistrationController extends Controller
         } else {
             return back()->with('fail', 'registration failed');
         }
-    }
-
-    public function loginUser(Request $request)
-    {
-        $validated = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-        $user = pRegistration::where('email', '=', $request->email)->first();
-        if ($user) {
-            if (Hash::check($request->password, $user->password)) {
-                $request->session()->put('loginId', $user->id);
-                return redirect('dashboard');
-            } else {
-                return back()->with('fail', 'this password is not matched');
-            }
-        }
-        if ($user) {
-        } else {
-            return back()->with('fail', 'this email is not registerd');
-        }
-    }
-    public function dashboard()
-    {
-        return "Welcome";
     }
 }
