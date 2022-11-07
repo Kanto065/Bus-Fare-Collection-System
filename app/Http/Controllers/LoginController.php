@@ -14,7 +14,7 @@ use App\Models\Admin;
 
 class LoginController extends Controller
 {
-    public function store(StoreLoginRequest $request)
+    public function store(StoreLogin $request)
     {
         //
     }
