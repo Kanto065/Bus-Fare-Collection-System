@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\BusOwnerController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AddBusController;
 use App\Http\Middleware\ValidUser;
 use GuzzleHttp\Middleware;
 
@@ -50,6 +51,9 @@ Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('passenger
 Route::get('/ownerdash', [LoginController::class, 'ownerdash']);
 Route::get('/admin', [LoginController::class, 'admin']);
 
-Route::get('/Add-Bus', [BusOwnerController::class, 'busAdd'])->name('addBus');
+Route::get('/Add-Bus', [AddBusController::class, 'busAdd'])->name('BusAdd');
+Route::post('/Add-Bus', [AddBusController::class, 'BusRegisterSubmit'])->name('addBus');
+
 Route::get('/view-route', [BusOwnerController::class, 'viewRoute'])->name('routeList');
+Route::get('/ownerdash', [BusOwnerController::class, 'ownerdash'])->name('ownerdash');
 //hello
