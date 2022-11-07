@@ -39,6 +39,8 @@ Route::post('/owner', [RegistrationController::class, 'ownerRegisterSubmit'])->n
 Route::post('login-user', [LoginController::class, 'loginUser'])->name('login-user');
 Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('passenger');
 Route::get('/ownerdash', [LoginController::class, 'ownerdash']);
+Route::get('/admin', [LoginController::class, 'admin']);
 
 Route::get('/Add-Bus', [BusOwnerController::class, 'busAdd'])->name('addBus');
+Route::get('/view-route', [BusOwnerController::class, 'viewRoute'])->name('routeList');
 //hello
