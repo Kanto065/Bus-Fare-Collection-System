@@ -4,14 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\storeLogin;
 use App\Models\Passenger;
 use App\Models\BusOwner;
 // use Illuminate\Support\Facades\Session;
 // use session;
+use App\Models\Admin;
 
 
 class LoginController extends Controller
 {
+    public function store(StoreLoginRequest $request)
+    {
+        //
+    }
     public function loginUser(Request $request)
     {
         $validated = $request->validate([
@@ -20,6 +26,7 @@ class LoginController extends Controller
         ]);
         $user = Passenger::where('email', '=', $request->email)->first();
         $busOwner = BusOwner::where('email', '=', $request->email)->first();
+        $admin = Admin::where('email', '=', $request->email)->first();
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
                 $request->session()->put('loginId', $user->id);
@@ -32,6 +39,14 @@ class LoginController extends Controller
             if (Hash::check($request->password, $busOwner->password)) {
                 $request->session()->put('loginId', $busOwner->id);
                 return redirect('ownerdash');
+            } else {
+                return back()->with('fail', 'this password is not matched');
+            }
+        }
+        if ($admin) {
+            if ($request->password = $admin->password) {
+                $request->session()->put('loginId', $admin->id);
+                return redirect('admin');
             } else {
                 return back()->with('fail', 'this password is not matched');
             }
@@ -48,9 +63,8 @@ class LoginController extends Controller
     {
         return view('busOwner.ownerDashboard');
     }
-    public function logout(Request $request)
+    public function admin()
     {
-        $request->session()->flush();
-        return redirect('Login');
+        return view('admin.admin');
     }
 }

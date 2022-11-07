@@ -8,6 +8,10 @@ class BusOwnerController extends Controller
 {
     public function busAdd()
     {
-        return view('addBus');
+        return view('busOwner.addBus');
+    }
+    public function viewRoute()
+    {
+        return view('busOwner.routeList');
     }
 }

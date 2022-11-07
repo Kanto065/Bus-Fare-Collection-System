@@ -46,9 +46,10 @@ Route::get('/owner', [RegistrationController::class, 'ownerRegister'])->name('ow
 Route::post('/owner', [RegistrationController::class, 'ownerRegisterSubmit'])->name('owner-registration');
 
 Route::post('login-user', [LoginController::class, 'loginUser'])->name('login-user');
-
-Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('passenger')->middleware('ValidUser');
-Route::get('/ownerdash', [LoginController::class, 'ownerdash'])->middleware('ValidUser');
+Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('passenger');
+Route::get('/ownerdash', [LoginController::class, 'ownerdash']);
+Route::get('/admin', [LoginController::class, 'admin']);
 
 Route::get('/Add-Bus', [BusOwnerController::class, 'busAdd'])->name('addBus');
+Route::get('/view-route', [BusOwnerController::class, 'viewRoute'])->name('routeList');
 //hello

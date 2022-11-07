@@ -48,6 +48,18 @@
                 <span class="text-danger">{{$message}}</span>
                 @enderror
             </div>
+            <div class="col-md-7">
+                <label for="validationDefaultEmail" class="Route_id">Route ID</label>
+                <div class="input-group">
+
+                    <input type="Route_id" class="form-control" id="validationDefaultEmail"
+                        aria-describedby="inputGroupPrepend2" name="Route_id" placeholder="1"
+                        value="{{old('Route_id')}}">
+                </div>
+                @error('Trade Licence')
+                <span class="text-danger">{{$message}}</span>
+                @enderror
+            </div>
             <div class="col-12">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" name="terms"
