@@ -1,17 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\route;
 
 use Illuminate\Http\Request;
 
 class BusOwnerController extends Controller
 {
-    public function busAdd()
-    {
-        return view('busOwner.addBus');
+    public function ownerdash(){
+        return view('busOwner.ownerDashboard');
     }
     public function viewRoute()
     {
-        return view('busOwner.routeList');
+        return view('busOwner.routeList')->with('routeListArr',route::all());
     }
 }

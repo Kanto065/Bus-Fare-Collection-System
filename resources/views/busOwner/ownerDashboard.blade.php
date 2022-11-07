@@ -25,7 +25,7 @@
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{route('addBus')}}">Add Bus</a>
+                            <a class="nav-link active" aria-current="page" href="{{route('BusAdd')}}">Add Bus</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{route('routeList')}}">Route List</a>
