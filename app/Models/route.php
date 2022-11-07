@@ -5,7 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class route extends Model
+class Route extends Model
 {
     use HasFactory;
+
+    public function stations()
+    {
+        return $this->belongsToMany(Station::class, 'route_station', 'route_id', ' station_id');
+    }
 }

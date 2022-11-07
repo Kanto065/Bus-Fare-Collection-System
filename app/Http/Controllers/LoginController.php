@@ -25,8 +25,8 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
         $user = Passenger::where('email', $request->email)->first();
-        $busOwner = BusOwner::where('email', '=', $request->email)->first();
-        $admin = Admin::where('email', '=', $request->email)->first();
+        $busOwner = BusOwner::where('email', $request->email)->first();
+        $admin = Admin::where('email', $request->email)->first();
         if ($user) {
 
             if (Hash::check($request->password, $user->password)) {
