@@ -24,10 +24,11 @@ class LoginController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-        $user = Passenger::where('email', '=', $request->email)->first();
+        $user = Passenger::where('email', $request->email)->first();
         $busOwner = BusOwner::where('email', '=', $request->email)->first();
         $admin = Admin::where('email', '=', $request->email)->first();
         if ($user) {
+
             if (Hash::check($request->password, $user->password)) {
                 $request->session()->put('loginId', $user->id);
                 return redirect('dashboard');
@@ -66,5 +67,10 @@ class LoginController extends Controller
     public function admin()
     {
         return view('admin.admin');
+    }
+    public function LogOut()
+    {
+        session()->forget('loginId');
+        return redirect()->route('log.in');
     }
 }

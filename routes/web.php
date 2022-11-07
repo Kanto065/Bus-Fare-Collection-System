@@ -34,11 +34,7 @@ Route::get('/login', function () {
     return view('Login');
 })->name('log.in');
 
-// Route::post('/logout', [LoginController::class, 'logout'])->name('log.out');
-Route::get('/logout', function () {
-    $s = session()->all();
-    dd($s);
-})->name('log.out');
+Route::get('/logout', [LoginController::class, 'LogOut'])->name('logout');
 
 Route::get('/passenger', [RegistrationController::class, 'passengerRegister'])->name('passenger-registration');
 Route::post('/passenger', [RegistrationController::class, 'PassengerRegisterSubmit'])->name('passenger-registration');
@@ -47,13 +43,12 @@ Route::get('/owner', [RegistrationController::class, 'ownerRegister'])->name('ow
 Route::post('/owner', [RegistrationController::class, 'ownerRegisterSubmit'])->name('owner-registration');
 
 Route::post('login-user', [LoginController::class, 'loginUser'])->name('login-user');
-Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('passenger');
-Route::get('/ownerdash', [LoginController::class, 'ownerdash']);
-Route::get('/admin', [LoginController::class, 'admin']);
+Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('passenger')->middleware('ValidUser');
+Route::get('/ownerdash', [LoginController::class, 'ownerdash'])->middleware('ValidUser');
+Route::get('/admin', [LoginController::class, 'admin'])->middleware('ValidUser');
 
-Route::get('/Add-Bus', [AddBusController::class, 'busAdd'])->name('BusAdd');
-Route::post('/Add-Bus', [AddBusController::class, 'BusRegisterSubmit'])->name('addBus');
+Route::get('/Add-Bus', [AddBusController::class, 'busAdd'])->name('BusAdd')->middleware('ValidUser');
+Route::post('/Add-Bus', [AddBusController::class, 'BusRegisterSubmit'])->name('addBus')->middleware('ValidUser');
 
-Route::get('/view-route', [BusOwnerController::class, 'viewRoute'])->name('routeList');
-Route::get('/ownerdash', [BusOwnerController::class, 'ownerdash'])->name('ownerdash');
-//hello
+Route::get('/view-route', [BusOwnerController::class, 'viewRoute'])->name('routeList')->middleware('ValidUser');
+Route::get('/ownerdash', [BusOwnerController::class, 'ownerdash'])->name('ownerdash')->middleware('ValidUser');
