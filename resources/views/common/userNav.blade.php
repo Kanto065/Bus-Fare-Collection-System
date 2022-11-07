@@ -1,6 +1,8 @@
 <html>
 <div class=" mt-5 text-end container">
-    <a class="btn btn-primary text-end" href="{{route('log.in')}}">Log Out</a>
+    <form action="{{route('log.out')}}" method="post">
+        <button type="submit" class="btn btn-primary text-end">Log Out</button>
+    </form>
 
 </div>
 

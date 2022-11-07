@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Passenger;
 use App\Models\BusOwner;
+// use Illuminate\Support\Facades\Session;
+// use session;
 
 
 class LoginController extends Controller
@@ -45,5 +47,10 @@ class LoginController extends Controller
     public function ownerdash()
     {
         return view('busOwner.ownerDashboard');
+    }
+    public function logout(Request $request)
+    {
+        $request->session()->flush();
+        return redirect('Login');
     }
 }

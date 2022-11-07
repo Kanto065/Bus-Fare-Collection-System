@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\BusOwnerController;
 use App\Http\Controllers\LoginController;
+use App\Http\Middleware\ValidUser;
+use GuzzleHttp\Middleware;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +33,12 @@ Route::get('/login', function () {
     return view('Login');
 })->name('log.in');
 
+// Route::post('/logout', [LoginController::class, 'logout'])->name('log.out');
+Route::get('/logout', function () {
+    $s = session()->all();
+    dd($s);
+})->name('log.out');
+
 Route::get('/passenger', [RegistrationController::class, 'passengerRegister'])->name('passenger-registration');
 Route::post('/passenger', [RegistrationController::class, 'PassengerRegisterSubmit'])->name('passenger-registration');
 
@@ -37,8 +46,9 @@ Route::get('/owner', [RegistrationController::class, 'ownerRegister'])->name('ow
 Route::post('/owner', [RegistrationController::class, 'ownerRegisterSubmit'])->name('owner-registration');
 
 Route::post('login-user', [LoginController::class, 'loginUser'])->name('login-user');
-Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('passenger');
-Route::get('/ownerdash', [LoginController::class, 'ownerdash']);
+
+Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('passenger')->middleware('ValidUser');
+Route::get('/ownerdash', [LoginController::class, 'ownerdash'])->middleware('ValidUser');
 
 Route::get('/Add-Bus', [BusOwnerController::class, 'busAdd'])->name('addBus');
 //hello
