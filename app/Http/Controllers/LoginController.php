@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\storeLogin;
 use App\Models\Passenger;
 use App\Models\BusOwner;
+
 // use Illuminate\Support\Facades\Session;
 // use session;
 use App\Models\Admin;
@@ -28,7 +29,6 @@ class LoginController extends Controller
         $busOwner = BusOwner::where('email', $request->email)->first();
         $admin = Admin::where('email', $request->email)->first();
         if ($user) {
-
             if (Hash::check($request->password, $user->password)) {
                 $request->session()->put('loginId', $user->id);
                 return redirect('dashboard');
@@ -58,7 +58,9 @@ class LoginController extends Controller
 
     public function dashboard()
     {
-        return view('passenger.passengerDashboard');
+        $activeUser = session()->get('loginId');
+        $user = Passenger::where('id', $activeUser)->first();
+        return view('passenger.passengerDashboard')->with('user',$user);
     }
     public function ownerdash()
     {

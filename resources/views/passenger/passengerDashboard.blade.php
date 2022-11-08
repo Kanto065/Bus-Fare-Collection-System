@@ -23,9 +23,6 @@
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Balance</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="#">Travel History</a>
                         </li>
 
@@ -33,6 +30,9 @@
                 </div>
             </div>
         </nav>
+        <div>
+            <h2>Balance:{{$user->balance}}</h2>
+        </div>
         <div class="mt-5 d-flex">
             <div class="col-md-3">
                 <input type="name" class="form-control" id="startingPoint" placeholder="From" >

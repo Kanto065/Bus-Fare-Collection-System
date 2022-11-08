@@ -30,6 +30,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{route('routeList')}}">Route List</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{route('busList')}}">Bus List</a>
+                        </li>
                     </ul>
                 </div>
             </div>
