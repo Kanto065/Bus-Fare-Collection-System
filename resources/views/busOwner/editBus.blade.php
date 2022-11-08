@@ -27,7 +27,7 @@
             </div>
         </nav>
     <div class="mt-5">
-        <h2 style="text-align:center;">ADD Bus</h2>
+        <h2 style="text-align:center;">Update Bus Information</h2>
     </div>
     <div class="container my-5">
     @if ($errors->any())
@@ -39,7 +39,7 @@
             </ul>
         </div>
         @endif
-        <form class="shadow-lg p-3 mb-5 bg-body rounded row g-3" action="{{route('addBus')}}" method="post">
+        <form class="shadow-lg p-3 mb-5 bg-body rounded row g-3" action="{{route('bus_update')}}" method="post">
             @if(Session::has('success'))
             <div class="alert alert-success">{{Session::get('success')}}</div>
             @endif
@@ -104,7 +104,7 @@
                 </div>
             </div>
             <div class="col-12">
-                <button type="submit" class="btn btn-primary">Register</button>
+                <button type="submit" class="btn btn-primary">Update</button>
             </div>
         </form>
     </div>

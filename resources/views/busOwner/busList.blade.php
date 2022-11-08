@@ -22,7 +22,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="{{route('ownerdash')}}">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{route('BusAdd')}}">Add Bus</a>
@@ -33,13 +33,37 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{route('busList')}}">Bus List</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{route('busList')}}">passenger List</a>
-                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
+
+        <div>
+        <div class="mt-5">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                <th scope="col">Bus Name</th>
+                <th scope="col">Amount of Bus</th>
+                <th scope="col">Trade Licence</th>
+                <th scope="col">Route No</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($busListArr as $AddBus)
+                <tr>
+                    <td>{{$AddBus->bus_name}}</td>
+                    <td>{{$AddBus->amount_bus}}</td>
+                    <td>{{$AddBus->trade_licence}}</td>
+                    <td>{{$AddBus->route_no}}</td>
+                    <td><a href="bus_delete/{{$AddBus->id}}">delete</a></td>
+                    <td><a href="bus_update/{{$AddBus->id}}">update</a></td>
+                </tr>
+                @endforeach
+            </tbody>
+            </table>
+        </div>
+        </div>
     </div>
 </body>
 
