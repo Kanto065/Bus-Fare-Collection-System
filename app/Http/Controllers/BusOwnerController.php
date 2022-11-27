@@ -31,17 +31,13 @@ class BusOwnerController extends Controller
         return view('busOwner.editBus')->with('bus', $bus);
     }
     public function BusUpdateSubmitted(Request $request){
-        $b = AddBus::where('id', $request->id)->first();
-        $b->bus_name = $request->bus_name;
-        $b->amount_bus = $request->Amount_of_Bus;
-        $b->Trade_Licence = $request->Trade_Licence;
-        $b->route_no = $request->Route_no;
-        $res = $b->save();
-        if ($res) {
-            return back()->with('success', 'update successfuly');
-        } else {
-            return back()->with('fail', 'update failed');
-        }
-
+        $bus = AddBus::where('id', $request->id)->first();
+        $bus->bus_name = $request->bus_name;
+        $bus->amount_bus = $request->Amount_of_Bus;
+        $bus->Trade_Licence = $request->Trade_Licence;
+        $bus->route_no = $request->Route_no;
+        $bus->save();
+        return view('busOwner.ownerDashboard');   
+        dd($b);    
     }
 }

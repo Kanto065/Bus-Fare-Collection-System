@@ -50,9 +50,9 @@ Route::get('/admin', [LoginController::class, 'admin']);
 Route::get('/Add-Bus', [AddBusController::class, 'busAdd'])->name('BusAdd')->middleware('ValidUser');
 Route::post('/Add-Bus', [AddBusController::class, 'BusRegisterSubmit'])->name('addBus')->middleware('ValidUser');
 
-Route::get('/view-route', [BusOwnerController::class, 'viewRoute'])->name('routeList')->middleware('ValidUser');
-Route::get('/view-bus', [BusOwnerController::class, 'viewBus'])->name('busList')->middleware('ValidUser');
-Route::get('/ownerdash', [BusOwnerController::class, 'ownerdash'])->name('ownerdash')->middleware('ValidUser');
+Route::get('/view-route', [BusOwnerController::class, 'viewRoute'])->name('routeList');
+Route::get('/view-bus', [BusOwnerController::class, 'viewBus'])->name('busList');
+Route::get('/ownerdash', [BusOwnerController::class, 'ownerdash'])->name('ownerdash');
 Route::get('bus_delete/{id}',[BusOwnerController::class, 'delete']);
 Route::get('bus_update/{id}',[BusOwnerController::class, 'update']);
 Route::post('/bus_update',[BusOwnerController::class, 'BusUpdateSubmitted'])->name('bus_update');

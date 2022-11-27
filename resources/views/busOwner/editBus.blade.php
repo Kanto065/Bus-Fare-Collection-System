@@ -30,7 +30,7 @@
         <h2 style="text-align:center;">Update Bus Information</h2>
     </div>
     <div class="container my-5">
-    @if ($errors->any())
+    <!-- @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
                 @foreach ($errors->all() as $error)
@@ -38,36 +38,28 @@
                 @endforeach
             </ul>
         </div>
-        @endif
+        @endif -->
         <form class="shadow-lg p-3 mb-5 bg-body rounded row g-3" action="{{route('bus_update')}}" method="post">
-            @if(Session::has('success'))
+            <!-- @if(Session::has('success'))
             <div class="alert alert-success">{{Session::get('success')}}</div>
             @endif
             @if(Session::has('fail'))
             <div class="alert alert-danger">{{Session::get('fail')}}</div>
-            @endif
+            @endif -->
             @csrf
             <div class="col-md-7">
+                <input type="hidden" class="form-control" value="{{$bus['id']}}" name="id">
+            </div>
+            <div class="col-md-7">
                 <label for="bus_name" class="form-label">Bus name</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="bus name" name="bus_name"
+                <input type="text" class="form-control"  placeholder="bus name" name="bus_name"
                     value="{{old('bus_name')}}">
-                @error('bus name')
-                <span class="text-danger">{{$message}}</span>
-                @enderror
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
             </div>
             <div class="col-md-7">
                 <label for="Amount of Bus" class="form-label">Amount of Bus</label>
                 <input type="text" class="form-control" id="validationCustom02" placeholder="Amount of Bus" name="Amount_of_Bus"
                     value="{{old('Amount of Bus')}}">
-                @error('Amount of Bus')
-                <span class="text-danger">{{$message}}</span>
-                @enderror
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
+                
             </div>
             <br>
             <div class="col-md-7">
@@ -83,7 +75,7 @@
                 @enderror
             </div>
             <div class="col-md-7">
-                <label for="validationDefaultEmail" class="Route_no">Route No.</label>
+                <label for="validationDefaultEmail" class="Route_no">Routed No.</label>
                 <div class="input-group">
 
                     <input type="Route_no" class="form-control" id="validationDefaultEmail"
