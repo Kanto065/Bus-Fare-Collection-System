@@ -37,7 +37,6 @@ class BusOwnerController extends Controller
         $bus->Trade_Licence = $request->Trade_Licence;
         $bus->route_no = $request->Route_no;
         $bus->save();
-        return view('busOwner.ownerDashboard');   
-        dd($b);    
+        return view('busOwner.ownerDashboard');       
     }
 }
