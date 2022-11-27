@@ -45,6 +45,5 @@ class BusOwnerController extends Controller
         $bus->route_no = $request->Route_no;
         $bus->save();
         return view('busOwner.ownerDashboard');
-        dd($b);
     }
 }
