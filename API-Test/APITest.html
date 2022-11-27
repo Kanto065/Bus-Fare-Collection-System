@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body onload="loadDoc()">
+<h2>bus info</h2>
+<ul>
+  <li id="bus-name"></li>
+  <li id="number-of-buses"></li>
+  <li id="trade-licence"></li>
+  <li id="route-no"></li>
+</ul>
+
+<script>
+function loadDoc() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    	var obj_arr = JSON.parse( this.responseText);
+      console.log(obj_arr);
+     Object.keys(obj_arr).forEach(key=>{
+        document.getElementById("bus-name").innerHTML = obj_arr[key].bus_name;
+        document.getElementById("number-of-buses").innerHTML =obj_arr[key].amount_bus;
+        document.getElementById("trade-licence").innerHTML =obj_arr[key].trade_licence;
+        document.getElementById("route-no").innerHTML =obj_arr[key].route_no;
+     })
+
+    //   document.getElementById("bus-name").innerHTML = obj_arr[0].bus_name;
+    //   document.getElementById("number-of-buses").innerHTML =obj_arr[0].amount_bus;
+    //   document.getElementById("trade-licence").innerHTML =obj_arr[0].trade_licence;
+    //   document.getElementById("route-no").innerHTML =obj_arr[0].route_no;
+    }
+  };
+  xhttp.open("GET", "http://127.0.0.1:8000/api/view-bus-api");
+  xhttp.send();
+}
+</script>
+</body>
+</html>
