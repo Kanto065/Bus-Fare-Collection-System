@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AddBusController;
+use App\Http\Controllers\BusOwnerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::post('/Add-Bus-api', [AddBusController::class, 'BusRegisterSubmitApi']);
+Route::get('/view-bus-api', [BusOwnerController::class, 'viewBusApi']);
