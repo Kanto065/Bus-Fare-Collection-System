@@ -18,7 +18,7 @@ function loadDoc() {
   };
   xhttp.open("POST", "http://127.0.0.1:8000/api/Add-Bus-api", true);
   xhttp.setRequestHeader("Content-type", "application/json");
-  xhttp.send(JSON.stringify({"bus-name":"victor", "Amount_of_Bus": "20", "Trade_Licence": "12345", "route_no": "A-201"}));
+  xhttp.send(JSON.stringify({"bus_name":"victor", "Amount_of_Bus": "20", "Trade_Licence": "12345", "Route_no": "A-201"}));
 }
 </script>
 
