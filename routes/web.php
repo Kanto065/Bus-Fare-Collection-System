@@ -45,6 +45,11 @@ Route::post('/owner', [RegistrationController::class, 'ownerRegisterSubmit'])->n
 Route::post('login-user', [LoginController::class, 'loginUser'])->name('login-user');
 Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('passenger')->middleware('ValidUser');
 Route::get('/ownerdash', [LoginController::class, 'ownerdash'])->middleware('ValidUser');
+
+
+Route::get('/password/forget', [LoginController::class, 'showForgetForm'])->name('forget-password-form');
+Route::post('/password/forget', [LoginController::class, 'sendResetLink'])->name('forget-password-link');
+
 Route::get('/admin', [LoginController::class, 'admin']);
 
 Route::get('/Add-Bus', [AddBusController::class, 'busAdd'])->name('BusAdd')->middleware('ValidUser');
