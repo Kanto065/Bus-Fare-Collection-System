@@ -30,22 +30,7 @@
         <h2 style="text-align:center;">Update Bus Information</h2>
     </div>
     <div class="container my-5">
-    <!-- @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif -->
         <form class="shadow-lg p-3 mb-5 bg-body rounded row g-3" action="{{route('bus_update')}}" method="post">
-            <!-- @if(Session::has('success'))
-            <div class="alert alert-success">{{Session::get('success')}}</div>
-            @endif
-            @if(Session::has('fail'))
-            <div class="alert alert-danger">{{Session::get('fail')}}</div>
-            @endif -->
             @csrf
             <div class="col-md-7">
                 <input type="hidden" class="form-control" value="{{$bus['id']}}" name="id">
