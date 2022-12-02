@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\storeLogin;
 use App\Models\Passenger;
 use App\Models\BusOwner;
-
+use Carbon\Carbon;
 // use Illuminate\Support\Facades\Session;
 // use session;
 use App\Models\Admin;
@@ -74,5 +74,16 @@ class LoginController extends Controller
     {
         session()->forget('loginId');
         return redirect()->route('log.in');
+    }
+
+    public function showForgetForm()
+    {
+        return view('forgot');
+    }
+    public function sendResetLink(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required|email',
+        ]);
     }
 }
