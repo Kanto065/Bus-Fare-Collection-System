@@ -85,5 +85,8 @@ class LoginController extends Controller
         $validated = $request->validate([
             'email' => 'required|email',
         ]);
+        $user = Passenger::where('email', $request->email)->first();
+        $busOwner = BusOwner::where('email', $request->email)->first();
+        $admin = Admin::where('email', $request->email)->first();
     }
 }
