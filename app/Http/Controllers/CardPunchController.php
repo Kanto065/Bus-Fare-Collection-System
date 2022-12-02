@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Station;
-use App\Http\Requests\StoreStationRequest;
-use App\Http\Requests\UpdateStationRequest;
+use App\Models\CardPunch;
+use Illuminate\Http\Request;
 
-class StationController extends Controller
+class CardPunchController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class StationController extends Controller
      */
     public function index()
     {
-        return Station::all();
+        //
     }
 
     /**
@@ -31,21 +30,26 @@ class StationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreStationRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreStationRequest $request)
+    public function store(Request $request)
     {
-        //
+        $b = new CardPunch();
+        $b->rfid = $request->rfid;
+        $b->latitude = $request->latitude;
+        $b->longitude = $request->longitude;
+        $res = $b->save();
+        return $res;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Station  $station
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Station $station)
+    public function show($id)
     {
         //
     }
@@ -53,10 +57,10 @@ class StationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Station  $station
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Station $station)
+    public function edit($id)
     {
         //
     }
@@ -64,11 +68,11 @@ class StationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateStationRequest  $request
-     * @param  \App\Models\Station  $station
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateStationRequest $request, Station $station)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +80,10 @@ class StationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Station  $station
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Station $station)
+    public function destroy($id)
     {
         //
     }
