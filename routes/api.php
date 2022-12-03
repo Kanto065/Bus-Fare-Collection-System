@@ -32,3 +32,4 @@ Route::post('/card-punch', [CardPunchController::class, 'store']);
 Route::get('/stations', [StationController::class, 'index']);
 
 Route::post('/loginApi', [LoginAPIController::class, 'login']);
+Route::post('/logout', [LoginAPIController::class, 'logout']);
