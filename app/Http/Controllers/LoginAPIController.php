@@ -34,15 +34,14 @@ class LoginAPIController extends Controller
         }
         //return $validUser;
 
-        if ($busOwner) {
+        else if ($busOwner) {
             if (Hash::check($request->password, $busOwner->password)) {
                 $validUser = $user;
                 $validUser["userType"] = "busOwner";
             } else {
                 return 'this password is not matched';
             }
-        }
-        if ($admin) {
+        } else if ($admin) {
             if ($request->password = $admin->password) {
                 $validUser = $user;
                 $validUser["userType"] = "admin";
