@@ -49,6 +49,7 @@ Route::get('/ownerdash', [LoginController::class, 'ownerdash'])->middleware('Val
 
 Route::get('/password/forget', [LoginController::class, 'showForgetForm'])->name('forget-password-form');
 Route::post('/password/forget', [LoginController::class, 'sendResetLink'])->name('forget-password-link');
+Route::get('/password/reset/{token}', [LoginController::class, 'showResetForm'])->name('reset-password-form');
 
 Route::get('/admin', [LoginController::class, 'admin']);
 
