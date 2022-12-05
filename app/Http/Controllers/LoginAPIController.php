@@ -19,7 +19,7 @@ class LoginAPIController extends Controller
         $busOwner = BusOwner::where('email', $request->email)->first();
         $admin = Admin::where('email', $request->email)->first();
 
-        //return $user;
+        // return $admin;
         //dd($user);
 
         if ($user) {
@@ -32,18 +32,19 @@ class LoginAPIController extends Controller
                 return 'this password is not matched';
             }
         }
-        //return $validUser;
+        // return $validUser;
 
         else if ($busOwner) {
             if (Hash::check($request->password, $busOwner->password)) {
-                $validUser = $user;
+                $validUser = $busOwner;
                 $validUser["userType"] = "busOwner";
             } else {
                 return 'this password is not matched';
             }
         } else if ($admin) {
             if ($request->password = $admin->password) {
-                $validUser = $user;
+                //return $admin;
+                $validUser = $admin;
                 $validUser["userType"] = "admin";
             } else {
                 return 'this password is not matched';
@@ -52,18 +53,23 @@ class LoginAPIController extends Controller
             return "No user found";
         }
 
+        //return $validUser;
+
         if ($validUser) {
             //return $request->isLoggedIn;
             $Logedin = Token::where('token', $request->isLoggedIn)->first();
             if ($Logedin) {
                 return 'logedin!';
             } else {
+                $dateTime = new DateTime();
                 $api_token = Str::random(64);
                 $token = new Token();
                 $token->userid = $validUser->id;
                 $token->token = $api_token;
                 $token->user_type = $validUser->userType;
-                $token->created_at = new DateTime();
+                $token->created_at = $dateTime;
+                //$dateTime2 = $dateTime->modify('+10 minutes');
+                //$token->expired_at = $dateTime->modify('+10 minutes');;
                 $token->expired_at = "";
                 $token->save();
                 return $token;
