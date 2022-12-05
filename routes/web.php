@@ -59,6 +59,6 @@ Route::post('/Add-Bus', [AddBusController::class, 'BusRegisterSubmit'])->name('a
 Route::get('/view-route', [BusOwnerController::class, 'viewRoute'])->name('routeList');
 Route::get('/view-bus', [BusOwnerController::class, 'viewBus'])->name('busList');
 Route::get('/ownerdash', [BusOwnerController::class, 'ownerdash'])->name('ownerdash');
-Route::get('bus_delete/{id}',[BusOwnerController::class, 'delete']);
-Route::get('bus_update/{id}',[BusOwnerController::class, 'update']);
-Route::post('/bus_update',[BusOwnerController::class, 'BusUpdateSubmitted'])->name('bus_update');
+Route::get('bus_delete/{id}', [BusOwnerController::class, 'delete']);
+Route::get('bus_update/{id}', [BusOwnerController::class, 'update']);
+Route::post('/bus_update', [BusOwnerController::class, 'BusUpdateSubmitted'])->name('bus_update');
