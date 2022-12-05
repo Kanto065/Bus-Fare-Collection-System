@@ -6,6 +6,7 @@ use App\Http\Controllers\AddBusController;
 use App\Http\Controllers\BusOwnerController;
 use App\Http\Controllers\CardPunchController;
 use App\Http\Controllers\LoginAPIController;
+use App\Http\Controllers\RegistrationApiController;
 use App\Http\Controllers\StationController;
 
 /*
@@ -32,4 +33,6 @@ Route::post('/card-punch', [CardPunchController::class, 'store']);
 Route::get('/stations', [StationController::class, 'index']);
 
 Route::post('/loginApi', [LoginAPIController::class, 'login']);
+Route::post('/passenger-register', [RegistrationApiController::class, 'passengerRegister']);
+Route::post('/bus-owner-register', [RegistrationApiController::class, 'busOwnerRegister']);
 Route::post('/logout', [LoginAPIController::class, 'logout']);
