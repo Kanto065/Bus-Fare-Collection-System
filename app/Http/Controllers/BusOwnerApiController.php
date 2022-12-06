@@ -23,4 +23,8 @@ class BusOwnerApiController extends Controller
             return "registration failed";
         }
     }
+    public function viewBusApi()
+    {
+        return AddBus::all();
+    }
 }
