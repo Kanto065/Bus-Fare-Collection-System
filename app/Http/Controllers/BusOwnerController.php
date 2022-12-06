@@ -21,10 +21,7 @@ class BusOwnerController extends Controller
     {
         return view('busOwner.busList')->with('busListArr', AddBus::all());
     }
-    public function viewBusApi()
-    {
-        return AddBus::all();
-    }
+   
     public function delete(Request $request)
     {
         $bus = AddBus::where('id', $request->id)->first();

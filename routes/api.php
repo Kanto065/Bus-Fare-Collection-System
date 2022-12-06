@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginAPIController;
 use App\Http\Controllers\RegistrationApiController;
 use App\Http\Controllers\StationController;
 use App\Http\Controllers\BusOwnerApiController;
+use App\Http\Controllers\AdminApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::post('/Add-Bus-api', [AddBusController::class, 'BusRegisterSubmitApi']);
-Route::get('/view-bus-api', [BusOwnerController::class, 'viewBusApi'])->middleware('APIAuth');
+// Route::get('/view-bus-api', [BusOwnerController::class, 'viewBusApi'])->middleware('APIAuth');
 
 Route::post('/card-punch', [CardPunchController::class, 'store']);
 
@@ -39,3 +40,6 @@ Route::post('/bus-owner-register', [RegistrationApiController::class, 'busOwnerR
 Route::post('/logout', [LoginAPIController::class, 'logout']);
 
 Route::post('/add-bus',[BusOwnerApiController::class,'AddBusSubmitApi']);
+Route::get('/view-bus-api', [BusOwnerApiController::class, 'viewBusApi']);
+
+Route::post('/add-route',[AdminApiController::class,'AddRouteSubmitApi']);

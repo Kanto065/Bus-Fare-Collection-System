@@ -24,4 +24,9 @@ class BusOwnerApiController extends Controller
             return "add bus failed";
         }
     }
+    public function viewBusApi()
+    {
+        return AddBus::all();
+    }
 }
+
