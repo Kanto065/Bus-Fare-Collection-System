@@ -26,7 +26,7 @@ class LoginAPIController extends Controller
             if (Hash::check($request->password, $user->password)) {
                 //$request->session()->put('loginId', $user->id);
                 //return redirect('dashboard');
-                
+
                 $validUser = $user;
                 $validUser["userType"] = "passenger";
             } else {
@@ -39,7 +39,6 @@ class LoginAPIController extends Controller
             if (Hash::check($request->password, $busOwner->password)) {
                 $validUser = $user;
                 $validUser["userType"] = "busOwner";
-                
             } else {
                 return 'this password is not matched';
             }
@@ -55,15 +54,13 @@ class LoginAPIController extends Controller
             return "No user found";
         }
 
-        return $validUser;
 
         if ($validUser) {
             //return $request->isLoggedIn;
-            
+
             $Logedin = Token::where('token', $request->isLoggedIn)->first();
             if ($Logedin) {
                 return 'logedin!';
-                
             } else {
                 // return $validUser;
                 $api_token = Str::random(64);
@@ -71,7 +68,7 @@ class LoginAPIController extends Controller
                 $token->userid = $validUser->id;
                 $token->token = $api_token;
                 $token->user_type = $validUser->userType;
-                $token->created_at = $dateTime;
+                $token->created_at = new DateTime();
                 //$dateTime2 = $dateTime->modify('+10 minutes');
                 //$token->expired_at = $dateTime->modify('+10 minutes');;
                 $token->expired_at = "";

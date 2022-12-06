@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\AddBus;
 
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ class BusOwnerApiController extends Controller
     //
     public function AddBusSubmitApi(Request $request)
     {
-        
+
         $b = new AddBus();
         $b->bus_name = $request->bus_name;
         $b->amount_bus = $request->Amount_of_Bus;
@@ -18,9 +19,9 @@ class BusOwnerApiController extends Controller
         $b->route_no = $request->Route_no;
         $res = $b->save();
         if ($res) {
-            return "registration success";
+            return "add bus success";
         } else {
-            return "registration failed";
+            return "add bus failed";
         }
     }
 }
