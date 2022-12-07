@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AddBus;
-
+use App\Models\route;
 use Illuminate\Http\Request;
 
 class BusOwnerApiController extends Controller
@@ -26,6 +26,17 @@ class BusOwnerApiController extends Controller
     }
     public function viewBusApi()
     {
+        return AddBus::all();
+    }
+    public function viewRouteApi()
+    {
+        return route::all();
+    }
+
+    public function delete(Request $request)
+    {
+        $bus = AddBus::where('id', $request->id)->first();
+        $bus->delete();
         return AddBus::all();
     }
 }
