@@ -21,4 +21,6 @@ class AdminApiController extends Controller
             return "add failed";
         }
     }
+
+    
 }
