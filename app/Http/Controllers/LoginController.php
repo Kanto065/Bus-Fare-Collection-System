@@ -83,6 +83,7 @@ class LoginController extends Controller
     {
         return view('forgot');
     }
+   
     public function sendResetLink(Request $request)
     {
         $validated = $request->validate([
@@ -91,6 +92,86 @@ class LoginController extends Controller
         $user = Passenger::where('email', $request->email)->first();
         $busOwner = BusOwner::where('email', $request->email)->first();
         $admin = Admin::where('email', $request->email)->first();
+
+
+        if($user)
+        {
+
+        $data=[
+            'subject'=>'reset password',
+            'body'=>'Your Bus fare collection system password can be changed by clicking this link'
+        ];
+        try{
+            Mail::to($request->email)->send(new Email($data));
+            return response()->json(['Great check your mail']);
+        }
+        catch(Exception $th){
+            return response()->json['sorry something wrong'];
+        }
+        }
+        if($busOwner)
+        {
+
+        $data=[
+            'subject'=>'reset password',
+            'body'=>'Your Bus fare collection system password can be changed by clicking this link'
+        ];
+        try{
+            Mail::to($request->email)->send(new Email($data));
+            return response()->json(['Great check your mail']);
+        }
+        catch(Exception $th){
+            return response()->json['sorry something wrong'];
+        }
+        }
+        if($admin)
+        {
+        $data=[
+            'subject'=>'reset password',
+            'body'=>'Your Bus fare collection system password can be changed by clicking this link'
+        ];
+        try{
+            Mail::to($request->email)->send(new Email($data));
+            return response()->json(['Great check your mail']);
+        }
+        catch(Exception $th){
+            return response()->json['sorry something wrong'];
+        }
+        }
+        
+    }
+    public function showResetForm(Request $request){
+        return view('reset-password');
+    }
+    public function passwordUpdateSubmit(Request $request){
+        $validated = $request->validate([
+            'email' => 'required|email',
+        ]);
+        $user = Passenger::where('email', $request->email)->first();
+        $busOwner = BusOwner::where('email', $request->email)->first();
+        $admin = Admin::where('email', $request->email)->first();
+        if($user){
+            $user = Passenger::where('email', $request->email)->first();
+            $user->password = $request->password;
+            $user->save();
+            return redirect()->route('log.in');
+        }
+        if($busOwner){
+            $busOwner = BusOwner::where('email', $request->email)->first();
+            $busOwner->password = $request->password;
+            $busOwner->save();
+            return redirect()->route('log.in');
+        }
+        if($admin){
+            $admin = Admin::where('email', $request->email)->first();
+            $admin->password = $request->password;
+            $admin->save();
+            return redirect()->route('log.in');
+        }
+        else{
+            // return back()->with('error');
+        }
+        return redirect()->route('log.in');
 
         $token = \Str::random(64);
         \DB::table('password_resets')->insert([
@@ -109,5 +190,7 @@ class LoginController extends Controller
         });
 
         return back()->with('success', 'We have e-mailed your password reset link!');
+
     }
+
 }
