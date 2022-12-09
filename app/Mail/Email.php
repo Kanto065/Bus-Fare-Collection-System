@@ -20,7 +20,7 @@ class Email extends Mailable
      */
     public function __construct($data)
     {
-        $this->$data=$data;
+        $this-> data= $data;
     }
 
     /**
@@ -28,6 +28,10 @@ class Email extends Mailable
      *
      * @return \Illuminate\Mail\Mailables\Envelope
      */
+    public function build(){
+        return $this->from('antusazzad0@gmail.com','Bus fare collection system')
+        ->subject($this->data['subject'])->view('email-forgot')->with('data',$this->data);
+    }
     public function envelope()
     {
         return new Envelope(
@@ -43,7 +47,7 @@ class Email extends Mailable
     public function content()
     {
         return new Content(
-            view: 'view.name',
+            view: 'email-forgot',
         );
     }
 

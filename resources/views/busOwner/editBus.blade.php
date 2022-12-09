@@ -30,7 +30,7 @@
         <h2 style="text-align:center;">Update Bus Information</h2>
     </div>
     <div class="container my-5">
-        <form class="shadow-lg p-3 mb-5 bg-body rounded row g-3" action="{{route('bus_update')}}" method="post">
+        <form class="shadow-lg p-3 mb-5 bg-body rounded row g-3" action="{{route('bus_update')}}" method="put">
             @csrf
             <div class="col-md-7">
                 <input type="hidden" class="form-control" value="{{$bus['id']}}" name="id">
