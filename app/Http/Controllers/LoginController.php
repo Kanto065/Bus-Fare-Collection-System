@@ -63,7 +63,7 @@ class LoginController extends Controller
     {
         $activeUser = session()->get('loginId');
         $user = Passenger::where('id', $activeUser)->first();
-        return view('passenger.passengerDashboard')->with('user',$user);
+        return view('passenger.passengerDashboard')->with('user', $user);
     }
     public function ownerdash()
     {
@@ -92,6 +92,7 @@ class LoginController extends Controller
         $user = Passenger::where('email', $request->email)->first();
         $busOwner = BusOwner::where('email', $request->email)->first();
         $admin = Admin::where('email', $request->email)->first();
+
 
         if($user)
         {
@@ -171,6 +172,25 @@ class LoginController extends Controller
             // return back()->with('error');
         }
         return redirect()->route('log.in');
+
+        $token = \Str::random(64);
+        \DB::table('password_resets')->insert([
+            'email' => $request->email,
+            'token' => $token,
+            'created_at' => Carbon::now(),
+        ]);
+
+        $action_link = route('reset-password-form', ['token' => $token, 'email' => $request->email]);
+        $body = "we are recived a request to reset the password for <b>Bus Fare Collection System </b> account associated with " . $request->email .
+            ". You can reset your passwprd by clicking the link below";
+        \Mail::send('email-forgot', ['action_link' => $action_link, 'body' => $body], function ($messege) use ($request) {
+            $messege->form('admin@gmail.com', 'Bus Fare Collection System');
+            $messege->to($request->email, 'Sazzad')
+                ->subject('Reset Password');
+        });
+
+        return back()->with('success', 'We have e-mailed your password reset link!');
+
     }
 
 }

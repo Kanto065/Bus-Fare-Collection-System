@@ -22,6 +22,7 @@ class RegistrationApiController extends Controller
             $newPassenger->address = $request->address;
             $newPassenger->password = Hash::make($request->password);
             $newPassenger->balance = 100;
+            //$newPassenger->rfid = "";
             $response = $newPassenger->save();
             if ($response) {
                 return "registration success";

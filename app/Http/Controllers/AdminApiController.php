@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Passenger;
 use App\Models\route;
 
 use Illuminate\Http\Request;
@@ -22,5 +23,22 @@ class AdminApiController extends Controller
         }
     }
 
-    
+    public function PassengerList()
+    {
+        return Passenger::all();
+    }
+
+    public function AssignRfid(Request $request)
+    {
+        $user = Passenger::where('id', $request->id)->first();
+        if ($user) {
+            $user->rfid = $request->rfid;
+            $res = $user->save();
+            if ($res) {
+                return "assign success";
+            }
+        } else {
+            return "user not found";
+        }
+    }
 }
