@@ -10,6 +10,7 @@ use App\Http\Controllers\RegistrationApiController;
 use App\Http\Controllers\StationController;
 use App\Http\Controllers\BusOwnerApiController;
 use App\Http\Controllers\AdminApiController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +48,8 @@ Route::get('/delete', [BusOwnerApiController::class, 'delete']);
 Route::post('/add-route', [AdminApiController::class, 'AddRouteSubmitApi']);
 Route::get('/passenger-list', [AdminApiController::class, 'PassengerList']);
 Route::post('/assign-rfid', [AdminApiController::class, 'AssignRfid']);
+
+
+// Route::post('/password-forget', [LoginAPIControllers::class, 'sendResetLink']);
+
+Route::post('/password/forget', [LoginController::class, 'sendResetLink'])->name('forget-password-link');
