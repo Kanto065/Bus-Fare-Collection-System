@@ -10,6 +10,9 @@ use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
+use Mail;
+use App\Mail\Email;
 
 class LoginAPIController extends Controller
 {
@@ -36,6 +39,7 @@ class LoginAPIController extends Controller
         // return $validUser;
 
         else if ($busOwner) {
+            
             if (Hash::check($request->password, $busOwner->password)) {
                 $validUser = $user;
                 $validUser["userType"] = "busOwner";
@@ -86,5 +90,63 @@ class LoginAPIController extends Controller
             return "deleted";
         }
         return "not found";
+    }
+
+
+    public function sendResetLink(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required|email',
+        ]);
+        $user = Passenger::where('email', $request->email)->first();
+        $busOwner = BusOwner::where('email', $request->email)->first();
+        $admin = Admin::where('email', $request->email)->first();
+
+
+        if($user)
+        {
+
+        $data=[
+            'subject'=>'reset password',
+            'body'=>'Your Bus fare collection system password can be changed by clicking this link'
+        ];
+        try{
+            Mail::to($request->email)->send(new Email($data));
+            return response()->json(['Great check your mail']);
+        }
+        catch(Exception $th){
+            return response()->json['sorry something wrong'];
+        }
+        }
+        if($busOwner)
+        {
+
+        $data=[
+            'subject'=>'reset password',
+            'body'=>'Your Bus fare collection system password can be changed by clicking this link'
+        ];
+        try{
+            Mail::to($request->email)->send(new Email($data));
+            return response()->json(['Great check your mail']);
+        }
+        catch(Exception $th){
+            return response()->json['sorry something wrong'];
+        }
+        }
+        if($admin)
+        {
+        $data=[
+            'subject'=>'reset password',
+            'body'=>'Your Bus fare collection system password can be changed by clicking this link'
+        ];
+        try{
+            Mail::to($request->email)->send(new Email($data));
+            return response()->json(['Great check your mail']);
+        }
+        catch(Exception $th){
+            return response()->json['sorry something wrong'];
+        }
+        }
+        
     }
 }
